@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wakeonlan c:4d:e9:9c:5:66

@@ -1,0 +1,12 @@
+#!/bin/bash
+LOGFILE=/tmp/az.log
+
+# This is a wrapper around the az command line to capture logs.
+REAL_AZ=`which -a az | tail -1`
+
+echo "az $@" >> $LOGFILE
+/usr/bin/time -f "%E" -o $LOGFILE -a $REAL_AZ $@
+AZ_RC=$?
+echo "exited $AZ_RC" >> $LOGFILE
+
+exit $AZ_RC
