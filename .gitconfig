@@ -1,0 +1,39 @@
+[user]
+	email = huxoll@gmail.com
+	name = John Gardner
+	signingkey = 883639926C4F9862
+[push]
+	default = current
+[color]
+	ui = auto
+[commit]
+	gpgsign = true
+[alias]
+	up = !git fetch && git rebase --autostash FETCH_HEAD
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log
+	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+	spush = push --recurse-submodules=on-demand
+	supdate = submodule update --remote --merge
+	sdiff = !git diff && git submodule foreach 'git diff'
+
+[diff]
+	submodule = log
+[core]
+	autocrlf = input
+#	pager = diff-so-fancy | less --tabs=4 -RFX
+[pager]
+	branch = false
+#        log = diffr | less
+#        show = diff | less
+#        diff = diffr | less
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+#[interactive]
+#	diffFilter = diff-so-fancy --patch
