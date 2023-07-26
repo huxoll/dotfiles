@@ -65,12 +65,18 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+PATH=/opt/homebrew/bin:$PATH
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew direnv battery fd git macos pyenv shrink-path yarn z)
+plugins=(brew direnv battery fd git kubectl-autocomplete macos pyenv shrink-path yarn z)
 # kubectl kubectx
 # too long: 
 source $ZSH/oh-my-zsh.sh
@@ -114,7 +120,7 @@ kubectx_mapping[scdc1-staging-vmw-piv-labs-admin]="$emoji[wolf_face]"
 kubectx_mapping[production_cluster]="%{$fg[yellow]%}prod!%{$reset_color%}"
 
 # include zsh configs
-source ~/.oh-my-zsh/custom.completion.kube.config
+#source ~/.oh-my-zsh/custom.completion.kube.config
 
 # Kubernetes
 #export KUBECONFIG=~/.kube/cava-config.yaml
