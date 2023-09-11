@@ -1,0 +1,20 @@
+#!/bin/bash
+
+NEEDLE="$1"
+HAYSTACK="$2"
+
+while getopts hq opt
+do      case "$opt" in
+        q)      ;;
+        h)      echo >&2 "Find text in long lines, just show immediate context for readability."
+                echo >&2 "Usage: $0 [-h] files-to-transform ..."
+                exit 1;;
+        \?)     echo "Invalid Option: -$OPTARG" 1>&2
+                exit 1
+                ;;
+        esac
+done
+
+echo "Looking for \"$NEEDLE\" in \"$HAYSTACK\"."
+grep -Rl "$NEEDLE" $HAYSTACK | xargs -I % sh -c 'echo "Found in" % && grep -o '"\".\{0,50\}$NEEDLE.\{0,50\}\""' %'
+
