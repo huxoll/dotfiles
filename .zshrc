@@ -71,12 +71,14 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+zstyle :omz:plugins:iterm2 shell-integration yes
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew direnv battery fd git kubectl-autocomplete macos pyenv shrink-path yarn z)
+plugins=(aliases brew direnv battery fd git iterm2 kubectl-autocomplete macos pyenv shrink-path yarn z)
 # kubectl kubectx
 # too long: 
 source $ZSH/oh-my-zsh.sh
