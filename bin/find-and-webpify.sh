@@ -13,6 +13,6 @@ do      case "$opt" in
         esac
 done
 
-find . -name "$pattern" -print0 | xargs -0 -n 1 -P 6 webpify-high.sh $@
+find . -iname "$pattern" | parallel -q -ll --progress webpify-high.sh $@
 
 
