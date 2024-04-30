@@ -61,7 +61,7 @@ done
 
 FA="moulinette/images/custom/ForgottenAdventures"
 TOK="${GHOME}/Tokens"
-FA_SETS=("$GHOME/Tokens/Creature_Tokens_*" "$GHOME/Tokens/Hero_Tokens_*")
+FA_SETS=("$GHOME/Tokens/Creature_Tokens_*" "$GHOME/Tokens/Hero_Tokens_*" "$GHOME/Tokens/Adversaries_Goblins" "$GHOME/Tokens/Adversaries_Pirates")
 
 for name_set in ${FA_SETS[@]}; do
   for target in $name_set; do
@@ -103,7 +103,7 @@ mkdir CR12 CR13 CR20 CR21
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_06/Constrictor_Snake_Large_Beast_01.webp" "Constrictor_Snake_Large_Beast_01.webp")
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_06/Giant_Wolf_Spider_Medium_Beast_01.webp" "Giant_Wolf_Spider_Medium_Beast_01.webp")
 (cd "CR0_25" && ln -snf "../../David North - Boss Monsters 9/Hadrosaurus.webp" "Hadrosaurus.webp")
-(cd "CR0_25" && ln -snf "../../Familiars and Summons/FS1_Panther.webp" "Panther.webp")
+(cd "CR0_25" && ln -snf "../../Creature_Tokens_50-59/Panther_Large_Beast_01.webp" "Panther_Large_Beast_01.webp")
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_05/Goblin_Small_Humanoid_01.webp" "Goblin_Small_Humanoid_01.webp")
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_05/Goblin_Small_Humanoid_02.webp" "Goblin_Small_Humanoid_02.webp")
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_05/Goblin_Small_Humanoid_03.webp" "Goblin_Small_Humanoid_03.webp")
@@ -114,6 +114,8 @@ mkdir CR12 CR13 CR20 CR21
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_05/Goblin_Small_Humanoid_08.webp" "Goblin_Small_Humanoid_08.webp")
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_05/Goblin_Small_Humanoid_09.webp" "Goblin_Small_Humanoid_09.webp")
 (cd "CR0_25" && ln -snf "../../Creature_Tokens_05/Goblin_Small_Humanoid_10.webp" "Goblin_Small_Humanoid_10.webp")
+(cd "CR0_25" && ln -snf "../../Creature_Tokens_50-59/Zombie_A_Medium_Undead_01.webp" "Zombie_Medium_Undead_01_A.webp")
+(cd "CR0_25" && ln -snf "../../Creature_Tokens_50-59/Zombie_B_Medium_Undead_01.webp" "Zombie_Medium_Undead_01_B.webp")
 (cd "CR0_5" && ln -snf "../../Creature_Tokens_08/Orc_Medium_Humanoid_01.webp" "Orc_Medium_Humanoid_01.webp")
 (cd "CR0_5" && ln -snf "../../Creature_Tokens_08/Orc_Medium_Humanoid_02.webp" "Orc_Medium_Humanoid_02.webp")
 (cd "CR0_5" && ln -snf "../../Creature_Tokens_08/Orc_Medium_Humanoid_03.webp" "Orc_Medium_Humanoid_03.webp")
@@ -140,8 +142,11 @@ mkdir CR12 CR13 CR20 CR21
 (cd "CR0_5" && ln -snf "../../Creature_Tokens_08/Sahuagin_Medium_Humanoid_01.webp" "sahuagin_medium_humanoid_06.webp")
 (cd "CR0_5" && ln -snf "../../Creature_Tokens_08/Sahuagin_Medium_Humanoid_01.webp" "sahuagin_medium_humanoid_07.webp")
 (cd "CR0_5" && ln -snf "../../Creature_Tokens_08/Sahuagin_Medium_Humanoid_01.webp" "sahuagin_medium_humanoid_08.webp")
+(cd "CR5" && ln -snf "../../Creature_Tokens_50-59/Sea_Lion_Large_Monstrosity_01.webp" "Sea_Lion_Large_Monstrosity_01.webp")
+(cd "CR1" && ln -snf "../../Creature_Tokens_50-59/Jaguar_large_beast_01.webp" "Jaguar_large_beast_01.webp")
 (cd "CR1" && ln -snf "../../Creature_Tokens_11/Animated_Armor_Medium_Construct_01.webp" "Animated_Armor_Medium_Construct_01.webp")
 (cd "CR1" && ln -snf "../../Creature_Tokens_11/Animated_Armor_Medium_Construct_Headless_01.webp" "Animated_Armor_Medium_Construct_Headless_01.webp")
+(cd "CR1" && ln -snf "../../Creature_Tokens_50-59/Leucrotta_Large_Monstrosity_01.webp" "Leucrotta_Large_Monstrosity_01.webp")
 (cd "CR1" && ln -snf "../../Creature_Tokens_09/Brown_Bear_Large_Beast_01.webp" "Brown_Bear_Large_Beast_01.webp")
 (cd "CR1" && ln -snf "../../Creature_Tokens_09/Brown_Bear_Large_Beast_08.webp" "Brown_Bear_Large_Beast_08.webp")
 (cd "CR1" && ln -snf "../../Devin Token Pack 67 - More Monsters 3/AA_Dryad2_hi.webp" "Dryad_hi.webp")
@@ -166,10 +171,16 @@ mkdir CR12 CR13 CR20 CR21
 (cd "CR3" && ln -snf "../../Jans Token Pack 5 - Aquatic Creatures 1/102378-Sahuagin-Infiltrator.webp" "sahuagin_warlock_medium_humanoid_01.webp")
 (cd "CR3" && ln -snf "../../Vampire's Curse/lycanthrope werewolf.webp" "werewolf_lycanthrope.webp")
 (cd "CR3" && ln -snf "../../Creature_Tokens_16/Werewolf_Medium_Humanoid_A_01.webp" "Werewolf_Medium_Humanoid_A_01.webp")
+(cd "CR4" && ln -snf "../../Creature_Tokens_50-59/Banshee_Medium_Undead_01.webp" "Banshee_Medium_Undead_01.webp")
+(cd "CR4" && ln -snf "../../Creature_Tokens_50-59/Brown_Scavver_Large_Monstrosity_01.webp" "Brown_Scavver_Large_Monstrosity_01.webp")
+(cd "CR4" && ln -snf "../../Creature_Tokens_50-59/Needle_Blight_Medium_Plant_01.webp" "Needle_Blight_Medium_Plant_01.webp")
 (cd "CR5" && ln -snf "../../Pixelfig - The Undead I/Allip.webp" "Allip.webp")
+(cd "CR4" && ln -snf "../../Creature_Tokens_50-59/Cambion_Medium_Scale300_Fiend_A_01.webp" "Cambion_Medium_Fiend_A_01.webp")
 (cd "CR5" && ln -snf "../../Jans Token Pack 5 - Aquatic Creatures 1/102374-Sahuagin-Baron.webp" "sahuagin_baron_medium_humanoid_01.webp")
 (cd "CR5" && ln -snf "../../David North - Dangers of the Isles Set 2/791557-SahuaginWaveShaper.webp" "sahuagin_wave_shaper_medium_humanoid_01.webp")
 (cd "CR5" && ln -snf "../../Jans Token Pack 5 - Aquatic Creatures 1/102380-Sahuagin-Priestess.webp" "sahuagin_high_priestess_medium_humanoid_01.webp")
+(cd "CR6" && ln -snf "../../Creature_Tokens_50-59/Cyclops_Huge_Giant_01.webp" "Cyclops_Huge_Giant_01.webp")
+(cd "CR6" && ln -snf "../../Creature_Tokens_50-59/Dusk_Hag_Medium_Fey_01.webp" "Dusk_Hag_Medium_Fey_01.webp")
 (cd "CR6" && ln -snf "../../Tome of Beasts Tokens/Ghoul_Beggar_02_hi.webp" "Bloated_Ghoul_Medium_Humanoid_01.webp")
 (cd "CR6" && ln -snf "../../Creature_Tokens_08/Hobgoblin_Warlord_Medium_Humanoid_01.webp" "Hobgoblin_Warlord_Medium_Humanoid_01.webp")
 (cd "CR6" && ln -snf "../../Creature_Tokens_08/Hobgoblin_Warlord_Medium_Humanoid_02.webp" "Hobgoblin_Warlord_Medium_Humanoid_02.webp")
@@ -184,6 +195,7 @@ mkdir CR12 CR13 CR20 CR21
 (cd "CR8" && ln -snf "../../Devin Token Pack 34 - Animals (KS)/squid.webp" "Monstrous_Squid_Submerged.webp")
 (cd "CR10" && ln -snf "../../Vampire's Curse/Slaad_Death.webp" "Slaad_Death.webp")
 (cd "CR10" && ln -snf "../../Vampire's Curse/Slaad_Death.webp" "Death_Slaad.webp")
+(cd "CR12" && ln -snf "../../Creature_Tokens_41-49/Gray_Render_Large_Monstrosity_01.webp" "Gray_Render_Large_Monstrosity_01.webp")
 (cd "CR11" && ln -snf "../../Devin Token Pack 67 - More Monsters 3/AA_Gyno_Sphynx_hi.webp" "GynoSphynx_large_monstrosity.webp")
 (cd "CR13" && ln -snf "../../Jans Token Pack 48 - Mimics, Shifters, and Tricksters/10-Rakshasa-a.webp" "Rakshasa-a.webp")
 (cd "CR13" && ln -snf "../../Jans Token Pack 48 - Mimics, Shifters, and Tricksters/10-Rakshasa-b.webp" "Rakshasa-b.webp")
