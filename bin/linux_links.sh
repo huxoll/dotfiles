@@ -61,7 +61,7 @@ done
 
 FA="moulinette/images/custom/ForgottenAdventures"
 TOK="${GHOME}/Tokens"
-FA_SETS=("$GHOME/Tokens/Creature_Tokens_*" "$GHOME/Tokens/Hero_Tokens_*" "$GHOME/Tokens/Adversaries_Goblins" "$GHOME/Tokens/Adversaries_Pirates")
+FA_SETS=("$GHOME/Tokens/Creature_Tokens_*" "$GHOME/Tokens/Hero_Tokens_*" "$GHOME/Tokens/Adversaries_*" "$GHOME/Tokens/NPCs_*")
 
 for name_set in ${FA_SETS[@]}; do
   for target in $name_set; do
@@ -86,6 +86,7 @@ ${LN} -snf "${GHOME}/DND/ThunderSeaAbyss/Zarrov_Tokens" "Tokens/ThunderSeaAbyss/
 ${LN} -snf "${GHOME}/DND/TerrorInThunderSea/Party Icons" "Tokens/TerrorInThunderSea"
 ${LN} -snf "${GHOME}/Tokens" "Tokens/All Tokens"
 ${LN} -snf "${GHOME}/Tokens/Smokin_Tokens_-_Skeleton_Army" "Tokens/Monsters/Smokin_Tokens_-_Skeleton_Army"
+${LN} -snf "${GHOME}/DND/Adventures" "Adventures/All_Adventures"
 
 #ln -snf "${GHOME}/Tokens/Jans\ Token\ Pack\ 10\ -\ Heroes\ 3/855476-Aarakocra-Barbarian3.webp" "Tokens/By_CR/CR0_25/Aarakocra-Barbarian3.webp"\n
 ln -snf "${GHOME}/Tokens/Jans\ Token\ Pack\ 10\ -\ Heroes\ 3/855476-Aarakocra-Barbarian3.webp" "${GHOME}/Tokens/By_CR/CR0_25/Aarakocra-Barbarian3.webp"
