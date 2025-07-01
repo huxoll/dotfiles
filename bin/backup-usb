@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Backing up bigstuff from internal drive to backup disk: usb"
+sleep 10
+
+if [[ $- == *i* ]]
+then
+    ARGS='-avPh'
+else
+    ARGS='-avh'
+fi
+
+sudo rsync $ARGS /mnt/bigstuff/shared/ /mnt/usb/shared/ --delete
+sudo rsync $ARGS /mnt/docker-volumes/ /mnt/usb/docker-volumes/ --delete
+sudo rsync $ARGS /home/gardnerj/ /mnt/usb/gardnerj/ --delete --exclude '*/.git/' --exclude '.vscode-server'
