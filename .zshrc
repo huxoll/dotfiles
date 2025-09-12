@@ -71,6 +71,18 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# Set up per-session history files
+SHELL_SESSION_DIR="${ZDOTDIR:-$HOME}/.zsh_sessions"
+mkdir -m 700 -p "$SHELL_SESSION_DIR"
+
+# Use a unique history file for each session based on the terminal's ID
+if [[ -n "$TERM_SESSION_ID" ]]; then
+  export HISTFILE="$SHELL_SESSION_DIR/$TERM_SESSION_ID"
+else
+  # Fallback for terminals without a unique session ID
+  export HISTFILE="$SHELL_SESSION_DIR/zsh_history_$(date +%Y-%m-%d_%H-%M-%S)"
+fi
+
 zstyle :omz:plugins:iterm2 shell-integration yes
 
 # Which plugins would you like to load?
@@ -78,12 +90,17 @@ zstyle :omz:plugins:iterm2 shell-integration yes
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases brew direnv battery fd git iterm2 kubectl-autocomplete macos pyenv shrink-path yarn z)
+# kube-ps1 -- too long
+plugins=(aliases brew direnv battery git git-auto-fetch iterm2 kubectl-autocomplete kube-ps1 macos pyenv shrink-path yarn z)
 # kubectl kubectx
 # too long: 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Unset shared history, so each session with have unique.
+unsetopt inc_append_history
+unsetopt share_history
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -102,6 +119,8 @@ source $ZSH/oh-my-zsh.sh
 # Go Path
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
+
+eval $(thefuck --alias)
 
 # Add jenv for selection of homebrew java version.
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -126,9 +145,11 @@ kubectx_mapping[production_cluster]="%{$fg[yellow]%}prod!%{$reset_color%}"
 
 # Kubernetes
 #export KUBECONFIG=~/.kube/cava-config.yaml
+#export KUBECONFIG=~/.kube/contexts/ara-gardnerj.yaml:~/.kube/contexts/kubeconfig-cluster-2.yaml::~/.kube/contexts/ara-mod-apps-svcs.yaml:~/.kube/contexts/vela-mod-apps-svcs.yaml:~/.kube/contexts/lyra-mod-apps-svcs.yaml
 
 # Google Compute
 export GDRIVE="/Users/gardnerj/Library/CloudStorage/GoogleDrive-huxoll@gmail.com/My Drive"
+export BDRIVE="/Users/gardnerj/Library/CloudStorage/GoogleDrive-john-jg.gardner@broadcom.com/My Drive"
 
 jhg_prompt_dir() {
   prompt_segment blue $CURRENT_FG "$(shrink_path -f -2)"
@@ -137,6 +158,16 @@ jhg_prompt_dir() {
 jhg_prompt_kube() {
   #prompt_segment blue $CURRENT_FG "$(kubectx_prompt_info)"
 }
+
+function get_cluster_short() {
+  echo -n "#"
+  echo -n $1
+  echo -n "#"
+  echo "$1" | cut -d . -f1
+}
+
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
@@ -145,10 +176,11 @@ build_prompt() {
   prompt_aws
   prompt_context
   jhg_prompt_dir
+  #kube_ps1
   prompt_git
   prompt_bzr
   prompt_hg
-  jhg_prompt_kube
+  #jhg_prompt_kube
   prompt_end
 }
 
@@ -170,7 +202,8 @@ mvname() {
 #
 # Apps and Containers
 # defeat muscle memory
-alias e='code --goto'
+#alias e='code --goto'
+alias e='cursor --goto'
 alias more='less'
 alias mroe='less'
 alias ls='ls -F'
@@ -199,6 +232,15 @@ alias grb='git rebase -p'
 alias gm='git merge --no-ff'
 alias glog='git log --oneline --decorate'
 #alias gup='git up'
+alias gpgh='git push github github:main'
+
+# Support multiple NodeJS versions with nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Add conda to path.
+PATH=$PATH:/opt/homebrew/anaconda3/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/gardnerj/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/gardnerj/google-cloud-sdk/path.zsh.inc'; fi
@@ -208,3 +250,9 @@ if [ -f '/Users/gardnerj/google-cloud-sdk/completion.zsh.inc' ]; then source '/U
 
 # Use direnv for per-directory settings.
 eval "$(direnv hook zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/gardnerj/.cache/lm-studio/bin"
+
+# Added by Windsurf
+export PATH="/Users/gardnerj/.codeium/windsurf/bin:$PATH"
