@@ -7,6 +7,7 @@ rsync_checker() {
 	grep -v "sending incremental" |\
 	grep -v "receiving incremental" |\
         grep -v "speedup" | grep -v "bytes/sec" |\
+        grep '\S' |\
 	cat >$TMP 2>&1
 	cat $TMP
 	[[ "$( wc -w < $TMP )" -lt 10 ]] || (echo "Copied files!" && cat $TMP)	
