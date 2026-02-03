@@ -1,16 +1,24 @@
 # startup file for bash
 
-[[ -z $DISPLAY ]] && export DISPLAY=":0.0"
+#[[ -z $DISPLAY ]] && export DISPLAY=":0.0"
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
 
 # this is broken: PS1='\[\e]2;$PWD\[\a\]\[\e]1;\W\[\a\][\u@\h \W]\\$ '
 # Prior: PS1='\[\e]0;${PWD}\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\W\[\e[0m\]\$ '
 PS1='\[\e]0;${PWD}\a\]\[\e[32m\]${USER/#gardnerj/me}@\h \[\e[33m\]\W\[\e[0m\]\$ '
 
-PATH=.:~/bin:/usr/local/bin:/usr/local/sbin:$PATH
-MANPATH=/opt/local/share/man:$MANPATH
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
 
 # GSUtil
-PATH=/usr/local/gsutil:$PATH
+#PATH=/usr/local/gsutil:$PATH
 
 # VMware CloudClient
 PATH=~/CloudClient-4.3.0/bin:$PATH
@@ -20,7 +28,7 @@ export PATH PS1
 
 export DOCKER_ID_USER="huxoll"
 # Source the z utility: http://github.com/rupa/z
-. /Users/gardnerj/bin/z.sh
+# . /Users/gardnerj/bin/z.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 #[[ -s "/Users/jgardner/.gvm/bin/gvm-init.sh" ]] && source "/Users/jgardner/.gvm/bin/gvm-init.sh"
@@ -33,18 +41,20 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 ## END Ansible gitprompt
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH=/Users/gardnerj/bin:$PATH:ZZZ
+#export PATH="$HOME/.yarn/bin:$PATH"
+#export PATH=/Users/gardnerj/bin:$PATH:ZZZ
 
-# added by travis gem
-[ -f /Users/gardnerj/.travis/travis.sh ] && source /Users/gardnerj/.travis/travis.sh
 export BYOBU_PYTHON='/usr/bin/env python'
 
-export KUBECONFIG="$HOME/.kube/pselab-config.yaml"
+#export KUBECONFIG="$HOME/.kube/pselab-config.yaml"
 # Path to your oh-my-bash installation.
-export OSH=/Users/gardnerj/.oh-my-bash
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  export OSH=/home/gardnerj/.oh-my-bash
+else
+  export OSH=/Users/gardnerj/.oh-my-bash
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -115,7 +125,7 @@ plugins=(
   bashmarks
 )
 
-source $OSH/oh-my-bash.sh
+#source $OSH/oh-my-bash.sh
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -138,7 +148,21 @@ source $OSH/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/gardnerj/.cache/lm-studio/bin"
+#export PATH="$PATH:/Users/gardnerj/.cache/lm-studio/bin"
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+eval "$(oh-my-posh init bash --config ~/projects/dotfiles/mytheme.omp.yaml)"
